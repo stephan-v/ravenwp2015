@@ -1,0 +1,45 @@
+@import "compass";
+
+// main fixed width
+$container-width : 1100px;
+
+// number of columns
+$column-count : 12;
+
+// gutter width
+$gutter-width: 3%;
+
+.container {
+	width: $container-width;
+	margin: 0 auto;
+}
+
+@for $i from 1 through $column-count {
+	.column-#{$i} {
+		width: (((100 + $gutter-width) / $column-count) * $i) - $gutter-width;
+	}
+}
+
+.row {
+	width: 100%;
+	@include pie-clearfix;
+}
+
+[class*="column"] {
+	float: left;
+	margin-left: $gutter-width;
+
+	&:first-child {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (max-width: $container-width) {
+	.container {
+		width: 100%;
+	}
+	[class*="column"] {
+		width: 100%;
+		margin: 0;
+	}
+}
